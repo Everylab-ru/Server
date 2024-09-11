@@ -1,0 +1,9 @@
+model Users {
+  id String @id
+
+  username String
+  password String
+  email    String
+
+  userRoles UserRoles[]
+}

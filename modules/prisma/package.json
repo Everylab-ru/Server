@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "gen:sheme": "awk 1 ./prisma/tables/*.prisma > ./prisma/schema.prisma && awk 1 ./prisma/types/*.prisma >> ./prisma/schema.prisma",
+    "generate:priamry": "npx prisma generate",
+    "generate": "npm run gen:sheme && npm run generate:priamry",
+    "create-migration": "npx prisma migrate dev --create-only",
+    "create-downsql": "npx prisma migrate diff --from-schema-datamodel ./prisma/schema.prisma --to-schema-datasource ./prisma/schema.prisma  --script > prisma/migrations/20240626082650_offer_fields_are_not_obligatory/down.sql",
+    "deploy:prisma": "npx prisma migrate deploy"
+  },
+  "devDependencies": {
+    "prisma": "^5.19.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.1"
+  }
+}
