@@ -25,6 +25,7 @@ jobs:
           git pull origin main
           docker-compose up -d --build
           cd ~/everylab/Server/modules/prisma
+          nvm use 18
           npm i
           npm run generate
           npm run deploy:prisma
