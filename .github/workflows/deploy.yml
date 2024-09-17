@@ -21,9 +21,10 @@ jobs:
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         run: |
           sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no root@89.169.38.6 << 'EOF'
+          source ~/.bashrc
           cd ~/everylab/Server
           git pull origin main
           docker-compose up -d --build
           cd ~/everylab/Server/modules/prisma
-          /usr/local/bin/npm i && /usr/local/bin/npm run generate && /usr/local/bin/npm run deploy:prisma
+          npm i && npm run generate && npm run deploy:prisma
           EOF
