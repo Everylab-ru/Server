@@ -21,18 +21,11 @@ jobs:
       - name: Install SSH client
         run: sudo apt-get install -y sshpass
 
-      - name: Install dependencies
+      - name: DB
         working-directory: modules/prisma
-        run: npm install
-
-      - name: Load environment variables and run scripts
-        working-directory: modules/prisma
-        run: |
-          set -a
-          source ~/everylab/Server/modules/prisma/.env
-          set +a
-          npm run generate
-          npm run deploy:prisma
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm i && npm run generate && npm run deploy:prisma
 
       - name: Deploy to server
         env:
