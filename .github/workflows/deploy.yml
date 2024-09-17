@@ -1,0 +1,31 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to server
+        env:
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no root@89.169.38.6 << 'EOF'
+          cd ~/everylab/Server
+          git pull origin main
+          docker-compose up -d --build
+          cd ~/everylab/Server/modules/prisma
+          npm i
+          npm run generate
+          npm run deploy:prisma
+          EOF
