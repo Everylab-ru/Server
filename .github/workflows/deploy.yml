@@ -21,7 +21,7 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: Install dependencies
-        working-directory: ~/everylab/Server/modules/prisma
+        working-directory: modules/prisma
         run: npm i
 
       - name: Deploy to server
