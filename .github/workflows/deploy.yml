@@ -25,5 +25,5 @@ jobs:
           git pull origin main
           docker-compose up -d --build
           cd ~/everylab/Server/modules/prisma
-          npm i && npm run generate && npm run deploy:prisma
+          /usr/local/bin/npm i && /usr/local/bin/npm run generate && /usr/local/bin/npm run deploy:prisma
           EOF
