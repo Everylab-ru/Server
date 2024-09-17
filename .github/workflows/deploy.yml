@@ -29,7 +29,7 @@ jobs:
         working-directory: modules/prisma
         run: |
           set -a
-          source .env
+          source ~/everylab/Server/modules/prisma/.env
           set +a
           npm run generate
           npm run deploy:prisma
