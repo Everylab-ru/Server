@@ -16,11 +16,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
+
       - name: Install SSH client
         run: sudo apt-get install -y sshpass
 
       - name: Install dependencies
-        run: cd ~/everylab/Server/modules/prisma && npm i
+        working-directory: ~/everylab/Server/modules/prisma
+        run: npm i
 
       - name: Deploy to server
         env:
