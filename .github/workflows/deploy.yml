@@ -15,13 +15,24 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install SSH client
         run: sudo apt-get install -y sshpass
 
-      - name: DB
+      - name: Install dependencies
         working-directory: modules/prisma
-        run: npm i && npm run generate && npm run deploy:prisma
+        run: npm install
+
+      - name: Load environment variables and run scripts
+        working-directory: modules/prisma
+        run: |
+          set -a
+          source .env
+          set +a
+          npm run generate
+          npm run deploy:prisma
 
       - name: Deploy to server
         env:
