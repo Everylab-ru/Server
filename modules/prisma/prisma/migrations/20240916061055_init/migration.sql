@@ -35,6 +35,6 @@ ALTER TABLE UserRoles
 ALTER TABLE UserRoles
     ADD CONSTRAINT UserRoles_rolesId_fkey FOREIGN KEY (rolesId) REFERENCES Roles (id) ON DELETE RESTRICT ON UPDATE CASCADE;
 
-INSERT INTO Roles (name)
-VALUES ('ADMIN'),
-       ('USER');
+INSERT INTO Roles (id, name)
+VALUES (1, 'ADMIN'),
+       (2, 'USER');
