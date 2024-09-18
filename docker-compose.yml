@@ -24,5 +24,20 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  nginx:
+    container_name: nginx
+    restart: on-failure
+    build:
+      context: ./modules/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./modules/nginx/ssl:/etc/nginx/ssl
+    env_file:
+      - .env
+    ports:
+      - "${NGINX_PORT}:${NGINX_PORT}"
+    depends_on:
+      - back
+
 volumes:
   postgres_data:
