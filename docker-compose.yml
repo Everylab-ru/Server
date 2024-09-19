@@ -11,14 +11,6 @@ services:
     depends_on:
       - postgres
 
-  front:
-    build:
-      context: ../Front/front
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
-    restart: unless-stopped
-
   postgres:
     image: postgres:15-alpine
     container_name: everylab-postgres
@@ -38,8 +30,6 @@ services:
     build:
       context: ./modules/nginx
       dockerfile: Dockerfile
-    volumes:
-      - ./modules/nginx/ssl:/etc/nginx/ssl
     env_file:
       - .env
     ports:
@@ -47,13 +37,6 @@ services:
       - "443:443"         # Открываем порт 443 для HTTPS
     depends_on:
       - back
-
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./modules/nginx/ssl:/etc/letsencrypt  # Храним сертификаты в одном месте с NGINX
-      - ./modules/nginx/ssl-data:/data/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
 
 
 volumes:
