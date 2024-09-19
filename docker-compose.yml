@@ -43,9 +43,18 @@ services:
     env_file:
       - .env
     ports:
-      - "${NGINX_PORT}:${NGINX_PORT}"
+      - "80:80"           # Открываем порт 80 для HTTP
+      - "443:443"         # Открываем порт 443 для HTTPS
     depends_on:
       - back
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./modules/nginx/ssl:/etc/letsencrypt  # Храним сертификаты в одном месте с NGINX
+      - ./modules/nginx/ssl-data:/data/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
+
 
 volumes:
   postgres_data:
