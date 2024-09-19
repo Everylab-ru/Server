@@ -11,6 +11,14 @@ services:
     depends_on:
       - postgres
 
+  front:
+    build:
+      context: ../Front/front
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    restart: unless-stopped
+
   postgres:
     image: postgres:15-alpine
     container_name: everylab-postgres
