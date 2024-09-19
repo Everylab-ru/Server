@@ -32,6 +32,8 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
+    volumes:
+      - ./modules/nginx/ssl:/etc/nginx/ssl
     ports:
       - "80:80"           # Открываем порт 80 для HTTP
       - "443:443"         # Открываем порт 443 для HTTPS
