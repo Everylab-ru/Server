@@ -21,19 +21,19 @@ CREATE TABLE users
 -- CreateTable
 CREATE TABLE user_roles
 (
-    usersId UUID    NOT NULL,
-    rolesId INTEGER NOT NULL,
+    user_id UUID    NOT NULL,
+    role_id INTEGER NOT NULL,
 
-    CONSTRAINT UserRoles_pkey PRIMARY KEY (usersId, rolesId)
+    CONSTRAINT UserRoles_pkey PRIMARY KEY (user_id, role_id)
 );
 
 -- AddForeignKey
 ALTER TABLE user_roles
-    ADD CONSTRAINT UserRoles_usersId_fkey FOREIGN KEY (usersId) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE;
+    ADD CONSTRAINT UserRoles_usersId_fkey FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE user_roles
-    ADD CONSTRAINT UserRoles_rolesId_fkey FOREIGN KEY (rolesId) REFERENCES roles (id) ON DELETE RESTRICT ON UPDATE CASCADE;
+    ADD CONSTRAINT UserRoles_rolesId_fkey FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 INSERT INTO roles (id, name)
 VALUES (1, 'ADMIN'),
