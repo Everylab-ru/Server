@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+    every-net:
+
 services:
   back:
     build:
@@ -10,6 +13,8 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+    networks:
+      - every-net
 
   postgres:
     image: postgres:15-alpine
@@ -23,6 +28,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+    networks:
+      - every-net
 
   nginx:
     container_name: nginx
@@ -38,6 +45,8 @@ services:
       - "443:443"         # Открываем порт 443 для HTTPS
     depends_on:
       - back
+    networks:
+      - every-net
 
 
 volumes:
