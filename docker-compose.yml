@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   back:
+    container_name:
+      back
     build:
       context: ../Back
       dockerfile: Dockerfile
@@ -13,7 +15,7 @@ services:
 
   postgres:
     image: postgres:15-alpine
-    container_name: everylab-postgres
+    container_name: postgres
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
