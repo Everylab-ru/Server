@@ -17,7 +17,7 @@ CREATE TABLE files
 
     CONSTRAINT files_pkey PRIMARY KEY (id),
 
-    CONSTRAINT files_file_type_id_fkey FOREIGN KEY (file_type_id) REFERENCES file_types (id),
+    CONSTRAINT files_file_type_id_fkey FOREIGN KEY (file_type_id) REFERENCES nsi_file_types (id),
     CONSTRAINT files_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
