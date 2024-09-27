@@ -1,9 +1,9 @@
-CREATE TABLE file_types
+CREATE TABLE nsi_file_types
 (
     id   INTEGER      NOT NULL,
     name VARCHAR(255) NOT NULL,
 
-    CONSTRAINT nsi_product_type_pkey PRIMARY KEY (id)
+    CONSTRAINT nsi_file_type_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE files
@@ -21,7 +21,7 @@ CREATE TABLE files
     CONSTRAINT files_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-INSERT INTO file_types (id, name)
+INSERT INTO nsi_file_types (id, name)
 VALUES (1, 'Курсовая работа'),
        (2, 'Лабораторная работа'),
        (3, 'Дипломная работа');
