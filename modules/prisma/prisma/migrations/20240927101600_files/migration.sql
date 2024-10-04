@@ -21,7 +21,13 @@ CREATE TABLE files
     CONSTRAINT files_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
+CREATE SEQUENCE files_id_seq;
+ALTER TABLE files
+    ALTER COLUMN id SET DEFAULT nextval('files_id_seq');
+
 INSERT INTO nsi_file_types (id, name)
-VALUES (1, 'Курсовая работа'),
-       (2, 'Лабораторная работа'),
-       (3, 'Дипломная работа');
+VALUES (1, 'Отчет'),
+       (2, 'Программа'),
+       (3, 'Чертеж'),
+       (4, 'презентация'),
+       (5, 'Прочий документ');

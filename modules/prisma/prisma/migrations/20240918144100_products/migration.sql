@@ -30,4 +30,9 @@ INSERT INTO nsi_product_type (id, name)
 VALUES (1, 'Лабораторная работа'),
        (2, 'Курсовая работа'),
        (3, 'Дипломная работа'),
-       (4, 'Прочие работы');
+       (4, 'Конспект'),
+       (5, 'Прочие работы');
+
+CREATE SEQUENCE products_id_seq;
+ALTER TABLE products
+    ALTER COLUMN id SET DEFAULT nextval('products_id_seq');

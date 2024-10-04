@@ -8,3 +8,7 @@ CREATE TABLE files_to_products
     CONSTRAINT files_to_products_file_id_fkey FOREIGN KEY (file_id) REFERENCES files (id),
     CONSTRAINT files_to_products_product_id_fkey FOREIGN KEY (product_id) REFERENCES products (id)
 );
+
+CREATE SEQUENCE files_to_products_id_seq;
+ALTER TABLE files_to_products
+    ALTER COLUMN id SET DEFAULT nextval('files_to_products_id_seq');

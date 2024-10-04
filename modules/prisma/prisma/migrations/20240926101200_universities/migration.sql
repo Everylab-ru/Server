@@ -29,6 +29,10 @@ CREATE TABLE user_to_university
     CONSTRAINT user_to_university_faculty_id_fkey FOREIGN KEY (faculty_id) REFERENCES university_faculties (id)
 );
 
+CREATE SEQUENCE user_to_university_id_seq;
+ALTER TABLE user_to_university
+    ALTER COLUMN id SET DEFAULT nextval('user_to_university_id_seq');
+
 -- Вставляем данные в таблицу universities
 INSERT INTO universities (id, name)
 VALUES (1, 'Белорусский государственный университет (БГУ)'),
